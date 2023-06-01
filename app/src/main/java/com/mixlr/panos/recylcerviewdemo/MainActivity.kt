@@ -3,6 +3,7 @@ package com.mixlr.panos.recylcerviewdemo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -27,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         val rv = findViewById<RecyclerView>(R.id.myRecyclerView)
         rv.setBackgroundColor(Color.YELLOW)
         rv.layoutManager = LinearLayoutManager(this)
-        rv.adapter = MyRecyclerViewAdapter(fruitsList)
+        rv.adapter = MyRecyclerViewAdapter(fruitsList) { selectedItem: Fruit ->
+            listItemClicked(selectedItem)
+        }
+    }
+
+    private fun listItemClicked(fruit: Fruit) {
+        Toast.makeText(this@MainActivity,
+            "Supplier Name is: ${fruit.supplier}", Toast.LENGTH_LONG).show()
     }
 }
