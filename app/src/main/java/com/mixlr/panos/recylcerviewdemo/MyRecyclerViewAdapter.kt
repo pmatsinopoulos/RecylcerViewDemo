@@ -21,10 +21,13 @@ class MyRecyclerViewAdapter(val fruitsList: List<Fruit>): RecyclerView.Adapter<M
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Log.i("MYRECYCLERVIEWDEMO", "MyRecyclerViewAdapter.onBindViewHolder(): position is $position")
         val fruit = fruitsList[position]
-        holder.myTextView.text = "${fruit.name} (${fruit.supplier})"
+        holder.bind(fruit)
     }
 }
 
 class MyViewHolder(val view: View): RecyclerView.ViewHolder(view) {
-    val myTextView = view.findViewById<TextView>(R.id.tvName)
+    fun bind(fruit: Fruit) {
+        val myTextView = view.findViewById<TextView>(R.id.tvName)
+        myTextView.text = "${fruit.name} (${fruit.supplier})"
+    }
 }
